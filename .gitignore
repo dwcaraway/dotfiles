@@ -1,0 +1,4 @@
+.netrwhist
+*.swp
+.atom/
+!.atom/*.cson
