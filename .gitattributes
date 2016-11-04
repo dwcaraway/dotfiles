@@ -1,0 +1,2 @@
+# Force all endings to unix style to avoid issues with vagrant
+* text=lf
