@@ -1,7 +1,3 @@
-[submodule ".vim/bundle/hardmode"]
-	path = .vim/bundle/hardmode
-	url = https://github.com/wikitopian/hardmode.git
-	branch = master
 [submodule ".vim/bundle/javascript-libraries-syntax"]
 	path = .vim/bundle/javascript-libraries-syntax
 	url = https://github.com/othree/javascript-libraries-syntax.vim.git

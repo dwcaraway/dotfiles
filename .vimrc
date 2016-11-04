@@ -72,9 +72,6 @@ set directory=/tmp
 " Filter out file types from nerdtree "
 let NERDTreeIgnore = ['\.pyc$', '.git', '__pycache__', '.vagrant']
 
-"Set vim into hard mode by default"
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-
 "NERDTree settings"
 "-- automatically open nerdtree if vim has no files specified on startup"
 autocmd StdinReadPre * let s:std_in=1
