@@ -5,6 +5,9 @@ execute pathogen#infect()
 
 set nocompatible
 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip, */node_modules/*     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe, *\\node_modules\\*  " Windows
+
 " enable syntax highlighting
 syntax on
 

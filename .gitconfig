@@ -1,5 +1,4 @@
 [user]
-	name = "Dave Caraway"
 	useConfigOnly = true
 [init]
 	templatedir = ~/.git-templ
@@ -32,3 +31,5 @@
 [cola]
 	tabwidth = 2
 	fontdiff = Monospace,9,-1,5,50,0,0,0,0,0
+[core]
+	trustctime = false
