@@ -52,7 +52,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ruby django ssh-agent)
+plugins=(git ruby django ssh-agent vi-mode)
 
 # User configuration
 
@@ -85,3 +85,4 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# export JAVA_HOME="/cygdrive/c/Program Files/Java/jdk1.8.0_111"
