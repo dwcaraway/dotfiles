@@ -86,3 +86,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # export JAVA_HOME="/cygdrive/c/Program Files/Java/jdk1.8.0_111"
+
+# Change to repos directory
+cd ~/repos
+
+alias c=clear
