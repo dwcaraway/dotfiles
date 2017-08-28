@@ -5,7 +5,7 @@ execute pathogen#infect()
 
 set nocompatible
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*     " MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/__pycache__/*,*.pyc     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*\\node_modules\\*  " Windows
 
 " enable syntax highlighting
@@ -77,8 +77,8 @@ let NERDTreeIgnore = ['\.pyc$', '.git', '__pycache__', '.vagrant']
 
 "NERDTree settings"
 "-- automatically open nerdtree if vim has no files specified on startup"
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 "-- map NERDTREE to CTRL+n"
 map <C-n> :NERDTreeToggle<CR>
@@ -124,6 +124,9 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+""" Fugitive plugin, automatically open quickfix window after grep
+autocmd QuickFixCmdPost *grep* cwindow
 
 """ BEGIN: Syntastic shellcheck/pylint
 set statusline+=%#warningmsg#
