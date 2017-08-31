@@ -6,34 +6,44 @@ execute pathogen#infect()
 set nocompatible
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/__pycache__/*,*.pyc     " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*\\node_modules\\*  " Windows
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*\\node_modules\\*,*.pyc  " Windows
 
 " enable syntax highlighting
 syntax on
 
 """ BEGIN: Auto relativenumber
-if has('autocmd')
-augroup vimrc_linenumbering
-    autocmd!
-    autocmd WinLeave *
-                \ if &number |
-                \   set norelativenumber |
-                \ endif
-    autocmd BufWinEnter *
-                \ if &number |
-                \   set relativenumber |
-                \ endif
-    autocmd VimEnter *
-                \ if &number |
-                \   set relativenumber |
-                \ endif
-augroup END
-endif
-""" END: Auto relativenumber
+" if has('autocmd')
+" augroup vimrc_linenumbering
+    " autocmd!
+    " autocmd WinLeave *
+                " \ if &number |
+                " \   set norelativenumber |
+                " \ endif
+    " autocmd BufWinEnter *
+                " \ if &number |
+                " \   set relativenumber |
+                " \ endif
+    " autocmd VimEnter *
+                " \ if &number |
+                " \   set relativenumber |
+                " \ endif
+" augroup END
+" endif
+"""" END: Auto relativenumber
 
-"(dont have autocmd setup yet) Set relative and absolute number toggle for Vim"
-set relativenumber
+" On start, display numbers and, assuming we'll be moving, enable relative
+" number
 set number
+set relativenumber
+
+" above autocommands for relative and absolute number not working, trying this
+" switch to absolute number when Vim loses focus
+:au FocusLost * :set number
+:au FocusGained * :set relativenumber
+
+" set to number mode on insert, relative mode when moving
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
 
 " indent when moving to the next line while writing code
 set autoindent
@@ -51,8 +61,11 @@ set smartcase
 " show a visual line under the cursor's current line
 set cursorline
 
-" show the matching part of the pair for [] {} and ()
-set showmatch
+" briefly jump to matching pair for [] {} and ()
+" set showmatch
+" But turn off the default matchparen plugin (on demand)
+" Use this to disable the matchparen plugin entirely
+let loaded_matchparen = 1
 
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
@@ -75,7 +88,7 @@ set backupdir=/tmp
 set directory=/tmp
 
 " Filter out file types from nerdtree "
-let NERDTreeIgnore = ['\.pyc$', '.git', '__pycache__', '.vagrant']
+let NERDTreeIgnore = ['\.pyc$', '.git', '__pycache__', '.vagrant', 'build', 'archive', 'dist', '\.egg.*']
 
 "NERDTree settings"
 "-- automatically open nerdtree if vim has no files specified on startup"
@@ -127,9 +140,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-""" Fugitive plugin, automatically open quickfix window after grep
-autocmd QuickFixCmdPost *grep* cwindow
-
 """ BEGIN: Syntastic shellcheck/pylint
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -151,3 +161,5 @@ endif
 ""let g:syntastic_python_checkers = ['python']
 """ END: Syntastic
 
+""" CTRL+P should show hidden files
+let g:ctrlp_show_hidden = 1
