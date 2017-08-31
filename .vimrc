@@ -57,10 +57,12 @@ set showmatch
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
 
-set ts=2 sw=2 expandtab "Set the default spacing Ruby on Rails style, 2 spaces per indentation level"
 autocmd FileType ruby setlocal shiftwidth=2 softtabstop=2
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4
+
 filetype plugin indent on
+set ts=4 sw=4 expandtab
+
 set omnifunc=syntaxcomplete#Complete
 
 set clipboard=unnamed
@@ -135,8 +137,8 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
 if system('command -v ansible-lint') != ''
   let g:syntastic_ansible_ansible_lint_exec = '/usr/bin/ansible-lint'
   let g:syntastic_ansible_checkers = ['ansible_lint']
