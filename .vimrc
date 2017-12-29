@@ -88,7 +88,7 @@ set backupdir=/tmp
 set directory=/tmp
 
 " Filter out file types from nerdtree "
-let NERDTreeIgnore = ['\.pyc$', '.git', '__pycache__', '.vagrant', 'build', 'archive', 'dist', '\.egg.*']
+let NERDTreeIgnore = ['\.pyc$', '.git', '__pycache__', '.vagrant', 'build', 'archive', 'dist', '\.egg.*', 'node_modules']
 
 "NERDTree settings"
 "-- automatically open nerdtree if vim has no files specified on startup"
