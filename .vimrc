@@ -140,26 +140,17 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-""" BEGIN: Syntastic shellcheck/pylint
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-if system('command -v ansible-lint') != ''
-  let g:syntastic_ansible_ansible_lint_exec = '/usr/bin/ansible-lint'
-  let g:syntastic_ansible_checkers = ['ansible_lint']
-endif
-if system('command -v yamllint') != ''
-  let g:syntastic_yaml_checkers = ['yamllint']
-endif
-
-"let g:syntastic_python_python_exec = '/usr/bin/python3'
-""let g:syntastic_python_checkers = ['python']
-""" END: Syntastic
-
 """ CTRL+P should show hidden files
 let g:ctrlp_show_hidden = 1
+
+""" NEOVIM python settings """
+" let g:python_host_prog = "/Users/dave/.pyenv/versions/neovim2/bin/python"
+" let g:python3_host_prog = "/Users/dave/.pyenv/versions/neovim3/bin/python"
+
+""" Javascript plugin """
+let g:javascript_plugin_flow = 1
+let g:jsx_ext_required = 0
+
+""" Ale syntax plugins """
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
