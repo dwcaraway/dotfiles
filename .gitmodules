@@ -94,3 +94,7 @@
 	path = .vim/bundle/ale
 	url = https://github.com/w0rp/ale.git
     branch = master
+[submodule ".vim/bundle/vim-indent-guides"]
+	path = .vim/bundle/vim-indent-guides
+	url = https://github.com/nathanaelkane/vim-indent-guides.git
+    branch = master

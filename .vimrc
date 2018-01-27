@@ -70,8 +70,10 @@ let loaded_matchparen = 1
 " enable all Python syntax highlighting features
 let python_highlight_all = 1
 
-autocmd FileType ruby setlocal shiftwidth=2 softtabstop=2
-autocmd FileType python setlocal shiftwidth=4 softtabstop=4
+autocmd FileType ruby setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
+autocmd FileType html setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
+autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
+autocmd FileType python setlocal shiftwidth=4 softtabstop=4 ts=4 expandtab
 
 filetype plugin indent on
 set ts=4 sw=4 expandtab
@@ -150,6 +152,15 @@ let g:ctrlp_show_hidden = 1
 """ Javascript plugin """
 let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
+
+"""BEGIN: VIM-JSX Plugin for react """
+
+""" By default, JSX syntax highlighting and indenting will be enabled only for
+""" files with the JSX extension. Set to 0 to allow JSX in a '.js' file
+let g:jsx_ext_required=0
+"
+""" END: VIM-JSX Plugin for React"""
+
 
 """ Ale syntax plugins """
 let g:ale_lint_on_save = 1
