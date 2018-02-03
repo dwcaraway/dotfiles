@@ -5,11 +5,14 @@ execute pathogen#infect()
 
 set nocompatible
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/__pycache__/*,*.pyc     " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*\\node_modules\\*,*.pyc  " Windows
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/__pycache__/*,*.pyc,*/staticfiles/*,'*/static/*'     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*\\node_modules\\*,*.pyc,*\\staticfiles\\*,'*\\static\\*'  " Windows
 
 " enable syntax highlighting
 syntax on
+
+" Opens quickfix window after any grep invocation
+autocmd QuickFixCmdPost *grep* cwindow
 
 """ BEGIN: Auto relativenumber
 " if has('autocmd')
@@ -73,6 +76,7 @@ let python_highlight_all = 1
 autocmd FileType ruby setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
 autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
+autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4 ts=4 expandtab
 
 filetype plugin indent on
@@ -142,6 +146,18 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+"split default to right and bottom
+set splitbelow
+set splitright
+
+"quickly move line or block up or down with ALT+(j or k)
+nnoremap <S-j> :m .+1<CR>==
+nnoremap <S-k> :m .-2<CR>==
+inoremap <S-j> <Esc>:m .+1<CR>==gi
+inoremap <S-k> <Esc>:m .-2<CR>==gi
+vnoremap <S-j> :m '>+1<CR>gv=gv
+vnoremap <S-k> :m '<-2<CR>gv=gv
+
 """ CTRL+P should show hidden files
 let g:ctrlp_show_hidden = 1
 
@@ -160,6 +176,7 @@ let g:jsx_ext_required = 0
 let g:jsx_ext_required=0
 "
 """ END: VIM-JSX Plugin for React"""
+
 
 
 """ Ale syntax plugins """
