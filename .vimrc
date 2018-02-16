@@ -79,9 +79,6 @@ autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
 autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4 ts=4 expandtab
 
-" enable = to format code with autopep8
-autocmd FileType python set equalprg=autopep8\ -
-
 filetype plugin indent on
 set ts=4 sw=4 expandtab
 
