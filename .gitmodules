@@ -102,6 +102,6 @@
 	path = .vim/bundle/vim-ack
 	url = https://github.com/mileszs/ack.vim.git
     branch = master
-[submodule ".vim/bundle/vim-autopep8"]
-	path = .vim/bundle/vim-autopep8
-	url = https://github.com/tell-k/vim-autopep8.git
+[submodule ".vim/bundle/vim-autoformat"]
+	path = .vim/bundle/vim-autoformat
+	url = https://github.com/Chiel92/vim-autoformat.git
