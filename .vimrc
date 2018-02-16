@@ -79,6 +79,9 @@ autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
 autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4 ts=4 expandtab
 
+" enable = to format code with autopep8
+autocmd FileType python set equalprg=autopep8\ -
+
 filetype plugin indent on
 set ts=4 sw=4 expandtab
 
@@ -150,13 +153,19 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-"quickly move line or block up or down with ALT+(j or k)
-nnoremap <S-j> :m .+1<CR>==
-nnoremap <S-k> :m .-2<CR>==
-inoremap <S-j> <Esc>:m .+1<CR>==gi
-inoremap <S-k> <Esc>:m .-2<CR>==gi
-vnoremap <S-j> :m '>+1<CR>gv=gv
-vnoremap <S-k> :m '<-2<CR>gv=gv
+""" BEGIN: quickly move line or block up or down with ALT+(j or k)"
+
+"have to remap ALT+J and ALT+k for mac
+" <ALT+j> ==> ∆
+" <ALT+k> ==> ˚
+
+nnoremap  ∆ :m .+1<CR>==
+nnoremap ˚ :m .-2<CR>==
+inoremap ∆ <Esc>:m .+1<CR>==gi
+inoremap ˚ <Esc>:m .-2<CR>==gi
+vnoremap ∆ :m '>+1<CR>gv=gv
+vnoremap ˚ :m '<-2<CR>gv=gv
+""" END: Quickly move line or block up or down
 
 """ CTRL+P should show hidden files
 let g:ctrlp_show_hidden = 1
