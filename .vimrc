@@ -1,8 +1,48 @@
-""" BEGIN: Pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
-""" END: Pathogen
+"########## Plugins #########
 
+""" BEGIN: Vim-plug automatic installation
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+""" END: Vim-plug
+
+""" BEGIN: vim plugin declaration
+call plug#begin('~/.vim/bundle')
+Plug 'w0rp/ale'
+Plug 'pearofducks/ansible-vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ervandew/supertab'
+Plug 'vim-airline/vim-airline'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'w0ng/vim-hybrid'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'leshill/vim-json'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'skalnik/vim-vroom'
+Plug 'tpope/vim-unimpaired'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'mileszs/ack.vim'
+Plug 'Chiel92/vim-autoformat'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-rbenv'
+Plug 'vim-ruby/vim-ruby'
+call plug#end()
+""" END: vim plugins declaration
+
+
+"########## Editor #########
+"
 set nocompatible
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/__pycache__/*,*.pyc,*/staticfiles/*,'*/static/*'     " MacOSX/Linux
@@ -75,6 +115,7 @@ let python_highlight_all = 1
 
 autocmd FileType ruby setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
+autocmd FileType xhtml setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
 autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
 autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4 ts=4 expandtab
