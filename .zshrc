@@ -55,7 +55,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git ruby django ssh-agent vi-mode)
 
 # User configuration
-
+alias c="clear"
 export PATH="/usr/local/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -90,4 +90,3 @@ source $ZSH/oh-my-zsh.sh
 # Change to repos directory
 cd ~/repos
 
-alias c=clear
