@@ -37,12 +37,16 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rbenv'
 Plug 'vim-ruby/vim-ruby'
+Plug 'flazz/vim-colorschemes'
 call plug#end()
 """ END: vim plugins declaration
 
-
 "########## Editor #########
 "
+
+" Set colorscheme
+colorscheme elflord
+
 set nocompatible
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/__pycache__/*,*.pyc,*/staticfiles/*,'*/static/*'     " MacOSX/Linux
