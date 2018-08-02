@@ -90,3 +90,13 @@ source $ZSH/oh-my-zsh.sh
 # Change to repos directory
 cd ~/repos
 
+# BEGIN ANSIBLE MANAGED BLOCK - pyenv
+export PATH="/home/vagrant/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+# END ANSIBLE MANAGED BLOCK - pyenv
+# BEGIN ANSIBLE MANAGED BLOCK - nvm
+export NVM_DIR="/home/vagrant/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# END ANSIBLE MANAGED BLOCK - nvm
