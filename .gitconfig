@@ -1,7 +1,7 @@
 [user]
 	useConfigOnly = true
-	; name = Dave Caraway
-	; email = your@email.com
+    ;name = your name
+	; email = youremail@foo.com
 [init]
 	templatedir = ~/.git-templ
 [push]
@@ -23,7 +23,10 @@
 	co = checkout
 	ci = commit
 	st = status
-  br = for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+    dev = !git checkout develop && git pull origin develop
+    merged = branch --merged
+    dmerged = "git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+    br = "for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
 	gg = log --oneline --decorate --graph
 	gga = log --oneline --decorate --graph --all
 	nb = "!__nb(){ git branch -D \"$1\" && git push -u origin :\"$1\"; }; __nb"
@@ -33,13 +36,14 @@
 	last = log -1 --stat
 	cp = cherry-pick
 	cl = clone
-	unstage = reset HEAD --
+	unstage = reset --soft HEAD^
 	dc = diff --cached
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
     #############
     subadd = !sh -c 'git submodule add git://github.com/$1 $2/$(basename $1)' -
     subup = submodule update --init --recursive
     subpull = !git submodule foreach git pull --tags origin master
+    pr = fetch -p
 [cola]
 	tabwidth = 2
 	fontdiff = Monospace,9,-1,5,50,0,0,0,0,0
@@ -47,7 +51,7 @@
 	trustctime = false
 	editor = vim
 	filemode = false
-    autocrlf = input
+	autocrlf = input
 [color]
 	ui = true
 [credential]
