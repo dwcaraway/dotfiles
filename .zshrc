@@ -90,6 +90,15 @@ source $ZSH/oh-my-zsh.sh
 # Change to repos directory
 cd ~/repos
 
+# aliases
+alias c=clear
+alias mcr="docker-compose run --rm metra-core-services"
+alias n="docker-compose run --rm django python manage.py"
+alias dcb="docker-compose build"
+alias t="docker-compose run --rm django pytest"
+alias tc="docker-compose run --rm django coverage run -m pytest"
+alias tch="docker-compose run --rm django coverage html"
+
 # BEGIN ANSIBLE MANAGED BLOCK - pyenv
 export PATH="/home/vagrant/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"

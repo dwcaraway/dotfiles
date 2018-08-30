@@ -38,6 +38,8 @@ Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-rbenv'
 Plug 'vim-ruby/vim-ruby'
 Plug 'flazz/vim-colorschemes'
+Plug 'mattn/emmet-vim'
+Plug 'takac/vim-hardtime'
 call plug#end()
 """ END: vim plugins declaration
 
@@ -229,7 +231,16 @@ let g:jsx_ext_required=0
 """ END: VIM-JSX Plugin for React"""
 
 
-
 """ Ale syntax plugins """
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
+
+""" Vim-hardtime """
+" To enable hardtime to ignore certain buffer patterns set
+let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*" ]
+
+" The quickfix window cannot be added to the ignore buffers array to have
+" hardtime ignore it set
+let g:hardtime_ignore_quickfix = 1
+
+""" END: Vim-hardtime

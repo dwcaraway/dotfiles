@@ -1,7 +1,7 @@
 [user]
 	useConfigOnly = true
-    ;name = your name
-	; email = youremail@foo.com
+    name = Dave Caraway
+	email = dave.caraway@tenet3.com
 [init]
 	templatedir = ~/.git-templ
 [push]
@@ -15,6 +15,9 @@
 	tool = vimdiff
 [merge]
 	tool = vimdiff
+    ff = false
+[pull]
+    ff = only
 [difftool]
 	prompt = true
 [apply]
