@@ -141,7 +141,7 @@ set backupdir=/tmp
 set directory=/tmp
 
 " Filter out file types from nerdtree "
-let NERDTreeIgnore = ['\.pyc$', '.git', '__pycache__', '.vagrant', 'build', 'archive', 'dist', '\.egg.*', 'node_modules', 'public']
+let NERDTreeIgnore = ['\.pyc$', '.git', '__pycache__', '.vagrant', 'build', 'archive', 'dist', '\.egg.*', 'node_modules', 'public', '.cache']
 
 "NERDTree settings"
 "-- automatically open nerdtree if vim has no files specified on startup"
@@ -213,7 +213,10 @@ vnoremap ˚ :m '<-2<CR>gv=gv
 
 """ CTRL+P should show hidden files
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = 'node_modules/|DS_Store\|\.git|public'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc$|node_modules$\|DS_Store$\|public$\|\.cache$',
+  \ 'file': '\.exe$\|\.so$\|\.dat$'
+  \ }
 
 """ NEOVIM python settings """
 " let g:python_host_prog = "/Users/dave/.pyenv/versions/neovim2/bin/python"

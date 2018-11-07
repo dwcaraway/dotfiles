@@ -52,7 +52,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git django ssh-agent vi-mode)
+plugins=(git django ssh-agent vi-mode zsh-autosuggestions)
 
 # User configuration
 alias c="clear"
@@ -92,12 +92,17 @@ cd ~/repos
 
 # aliases
 alias c=clear
-alias mcr="docker-compose run --rm metra-core-services"
 alias n="docker-compose run --rm django python manage.py"
 alias dcb="docker-compose build"
 alias t="docker-compose run --rm django pytest"
 alias tc="docker-compose run --rm django coverage run -m pytest"
 alias tch="docker-compose run --rm django coverage html"
+
+# enable polling for gatsby develop
+export CHOKIDAR_USEPOLLING=1
+
+# workaround bug with gatsby build too many open files
+ulimit -n 2560
 
 # BEGIN ANSIBLE MANAGED BLOCK - pyenv
 export PATH="/home/vagrant/.pyenv/bin:$PATH"
