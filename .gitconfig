@@ -1,6 +1,6 @@
 [user]
 	useConfigOnly = true
-    name = Dave Caraway
+	name = Dave Caraway
 	email = dave.caraway@tenet3.com
 [init]
 	templatedir = ~/.git-templ
@@ -47,7 +47,8 @@
     subup = submodule update --init --recursive
     subpull = !git submodule foreach git pull --tags origin master
     pr = fetch -p
-    gp = git pull --ff-only
+    gp = pull --ff-only
+    prr = remote prune origin
 [cola]
 	tabwidth = 2
 	fontdiff = Monospace,9,-1,5,50,0,0,0,0,0

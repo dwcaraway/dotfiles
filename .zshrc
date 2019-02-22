@@ -94,7 +94,7 @@ cd ~/repos
 alias c=clear
 alias n="docker-compose run --rm django python manage.py"
 alias dcb="docker-compose build"
-alias t="docker-compose run --rm django pytest"
+alias t="docker-compose run --rm django pytest --flake8"
 alias tc="docker-compose run --rm django coverage run -m pytest"
 alias tch="docker-compose run --rm django coverage html"
 
