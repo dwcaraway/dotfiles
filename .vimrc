@@ -11,35 +11,42 @@ endif
 """ BEGIN: vim plugin declaration
 call plug#begin('~/.vim/bundle')
 Plug 'w0rp/ale'
-Plug 'pearofducks/ansible-vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ervandew/supertab'
 Plug 'vim-airline/vim-airline'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'w0ng/vim-hybrid'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leshill/vim-json'
+Plug 'mattn/emmet-vim'
+
+" Nice to have? these insert snippets for javascript
+" see https://www.youtube.com/watch?v=LoF-7GJOdVo
+" Plug 'SirVer/ultisnips'
+" Plug 'epilande/vim-es2015-snippets'
+" Plug 'epilande/vim-react-snippets'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'mileszs/ack.vim'
+Plug 'Valloric/MatchTagAlways'
+" Trigger post install script for YouCompleteMe
+" see
+" https://github.com/junegunn/vim-plug#post-update-hooks
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'Raimondi/delimitMate'
+Plug 'ervandew/supertab'
+Plug 'ntpeters/vim-better-whitespace'
+" Disabled, not doing Ruby development
+" Plug 'tpope/vim-bundler'
+" Plug 'tpope/vim-rbenv'
+Plug 'vim-ruby/vim-ruby'
+Plug 'pearofducks/ansible-vim'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'skalnik/vim-vroom'
 Plug 'tpope/vim-unimpaired'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'mileszs/ack.vim'
-Plug 'Chiel92/vim-autoformat'
-Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-rbenv'
-Plug 'vim-ruby/vim-ruby'
 Plug 'flazz/vim-colorschemes'
-Plug 'mattn/emmet-vim'
-Plug 'takac/vim-hardtime'
 call plug#end()
 """ END: vim plugins declaration
 
@@ -60,39 +67,9 @@ syntax on
 " Opens quickfix window after any grep invocation
 autocmd QuickFixCmdPost *grep* cwindow
 
-""" BEGIN: Auto relativenumber
-" if has('autocmd')
-" augroup vimrc_linenumbering
-    " autocmd!
-    " autocmd WinLeave *
-                " \ if &number |
-                " \   set norelativenumber |
-                " \ endif
-    " autocmd BufWinEnter *
-                " \ if &number |
-                " \   set relativenumber |
-                " \ endif
-    " autocmd VimEnter *
-                " \ if &number |
-                " \   set relativenumber |
-                " \ endif
-" augroup END
-" endif
-"""" END: Auto relativenumber
-
-" On start, display numbers and, assuming we'll be moving, enable relative
-" number
+" turn hybrid line numbers on
 set number
 set relativenumber
-
-" above autocommands for relative and absolute number not working, trying this
-" switch to absolute number when Vim loses focus
-:au FocusLost * :set number
-:au FocusGained * :set relativenumber
-
-" set to number mode on insert, relative mode when moving
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
 
 " indent when moving to the next line while writing code
 set autoindent
@@ -127,7 +104,7 @@ autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 ts=2 expandtab
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4 ts=4 expandtab
 
 filetype plugin indent on
-set ts=4 sw=4 expandtab
+set ts=2 sw=2 expandtab
 
 set omnifunc=syntaxcomplete#Complete
 
@@ -143,30 +120,21 @@ set directory=/tmp
 " Filter out file types from nerdtree "
 let NERDTreeIgnore = ['\.pyc$', '.git', '__pycache__', '.vagrant', 'build', 'archive', 'dist', '\.egg.*', 'node_modules', 'public', '.cache']
 
-"NERDTree settings"
-"-- automatically open nerdtree if vim has no files specified on startup"
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
 "-- map NERDTREE to CTRL+n"
 map <C-n> :NERDTreeToggle<CR>
 
-"NERDcommenter settings"
+"-- map NERDTreeFind to CTRL+m"
+map <C-m> :NERDTreeFind<CR>
 
+" BEGIN: NERDcommenter settings
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
 
-" Align line-wise comment delimiters flush left instead of following code
-" let g:NERDDefaultAlign = 'left'
-
 " Set a language to use its alternate delimiters by default
 let g:NERDAltDelims_java = 1
-
-" Add your own custom formats or override the defaults
-" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 
 " Allow commenting and inverting empty lines (useful when commenting a
 " region)
@@ -174,18 +142,7 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
-
-""" Remove trailing whitespaces:
-autocmd BufWritePre * :%s/\s\+$//e
-
-""" BEGIN: Highlight trailing whitespace but not in INSERT
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
-""" END: Highlight trailing whitespace
+" END: NERDcommenter
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -218,33 +175,60 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\.exe$\|\.so$\|\.dat$'
   \ }
 
-""" NEOVIM python settings """
-" let g:python_host_prog = "/Users/dave/.pyenv/versions/neovim2/bin/python"
-" let g:python3_host_prog = "/Users/dave/.pyenv/versions/neovim3/bin/python"
-
-""" Javascript plugin """
+""" BEGIN: VIM-Javascript plugin
 let g:javascript_plugin_flow = 1
-let g:jsx_ext_required = 0
+""" END: VIM-Javascript plugin
 
-"""BEGIN: VIM-JSX Plugin for react """
+"""BEGIN: VIM-JSX Plugin for react
 
-""" By default, JSX syntax highlighting and indenting will be enabled only for
-""" files with the JSX extension. Set to 0 to allow JSX in a '.js' file
+" By default, JSX syntax highlighting and indenting will be enabled only for
+" files with the JSX extension. Set to 0 to allow JSX in a '.js' file
 let g:jsx_ext_required=0
+
+""" END: VIM-JSX Plugin for React
+
+
+""" BEGIN: Ale plugins
+" ALE by default runs all linters and fixers for all languages
+" instead, let's tell ALE to only run linters explicitly configured
+" let g:ale_linters_explicit = 1
 "
-""" END: VIM-JSX Plugin for React"""
+let g:ale_fixers = {
+    \ 'javascript': ['prettier'],
+    \ 'css': ['prettier'],
+    \ 'json': ['prettier'],
+    \}
 
-
-""" Ale syntax plugins """
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 
-""" Vim-hardtime """
-" To enable hardtime to ignore certain buffer patterns set
-let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*" ]
+" Enable ESLint only for JavaScript
+let g:ale_linters = {
+    \ 'javascript': ['eslint'],
+    \}
 
-" The quickfix window cannot be added to the ignore buffers array to have
-" hardtime ignore it set
-let g:hardtime_ignore_quickfix = 1
+" Display error information on status bar
+let g:airline#extensions#ale#enabled = 1
+""" END: ALE plugin
 
-""" END: Vim-hardtime
+""" BEGIN: Better Whitespace plugin """
+let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_confirm=1
+""" END: Better Whitespace plugin """
+
+""" BEGIN: Match Tag Always plugin
+
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+    \ 'javascript.jsx': 1,
+    \}
+""" END: Match Tag Always plugin
+
+
+""" BEGIN: Vim indent guides
+" have indent guides enabled by default
+" optionally, can disable and use the <Leader>ig toggle
+let g:indent_guides_enable_on_vim_startup =0
+""" END: VIM indent guides
