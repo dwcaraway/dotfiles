@@ -94,9 +94,12 @@ cd ~/repos
 alias c=clear
 alias n="docker-compose run --rm django python manage.py"
 alias dcb="docker-compose build"
+alias dcu="docker-compose up -d"
 alias t="docker-compose run --rm django pytest --flake8"
 alias tc="docker-compose run --rm django coverage run -m pytest"
 alias tch="docker-compose run --rm django coverage html"
+alias mdb="node --inspect-brk=0.0.0.0:4200 node_modules/.bin/jest --runInBand"
+alias mdbw="node --inspect-brk=0.0.0.0:4200 node_modules/.bin/jest --runInBand --watch"
 
 # enable polling for gatsby develop
 export CHOKIDAR_USEPOLLING=1

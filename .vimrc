@@ -20,9 +20,13 @@ Plug 'mattn/emmet-vim'
 
 " Nice to have? these insert snippets for javascript
 " see https://www.youtube.com/watch?v=LoF-7GJOdVo
-" Plug 'SirVer/ultisnips'
-" Plug 'epilande/vim-es2015-snippets'
-" Plug 'epilande/vim-react-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'epilande/vim-es2015-snippets'
+Plug 'epilande/vim-react-snippets'
+
+" Disabled completor as it slowed down VIM
+" Plug 'maralla/completor.vim'
+
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -32,8 +36,8 @@ Plug 'Valloric/MatchTagAlways'
 " see
 " https://github.com/junegunn/vim-plug#post-update-hooks
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
-Plug 'Raimondi/delimitMate'
 Plug 'ervandew/supertab'
+Plug 'Raimondi/delimitMate'
 Plug 'ntpeters/vim-better-whitespace'
 " Disabled, not doing Ruby development
 " Plug 'tpope/vim-bundler'
@@ -124,7 +128,8 @@ let NERDTreeIgnore = ['\.pyc$', '.git', '__pycache__', '.vagrant', 'build', 'arc
 map <C-n> :NERDTreeToggle<CR>
 
 "-- map NERDTreeFind to CTRL+m"
-map <C-m> :NERDTreeFind<CR>
+" commenting this out since it's interfering with the quickfix file open
+" map <C-m> :NERDTreeFind<CR>
 
 " BEGIN: NERDcommenter settings
 " Add spaces after comment delimiters by default
@@ -201,19 +206,30 @@ let g:ale_fixers = {
 
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
+let g:ale_fix_on_save = 1
 
 " Enable ESLint only for JavaScript
 let g:ale_linters = {
     \ 'javascript': ['eslint'],
     \}
 
+" From https://github.com/w0rp/ale/issues/44#issuecomment-283252535
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+
 " Display error information on status bar
 let g:airline#extensions#ale#enabled = 1
+
+" Keymappings for ALE to navigate lint errors
+nmap <silent> <leader>ak <Plug>(ale_previous_wrap)
+nmap <silent> <leader>aj <Plug>(ale_next_wrap)
 """ END: ALE plugin
 
 """ BEGIN: Better Whitespace plugin """
 let g:strip_whitespace_on_save = 1
-let g:strip_whitespace_confirm=1
+let g:strip_whitespace_confirm=0
 """ END: Better Whitespace plugin """
 
 """ BEGIN: Match Tag Always plugin
@@ -230,5 +246,14 @@ let g:mta_filetypes = {
 """ BEGIN: Vim indent guides
 " have indent guides enabled by default
 " optionally, can disable and use the <Leader>ig toggle
+" disabled, as it caused issues with NerdTree
 let g:indent_guides_enable_on_vim_startup =0
 """ END: VIM indent guides
+
+
+""" BEGIN: Ultisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+""" END: Ultisnips
