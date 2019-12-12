@@ -10,6 +10,12 @@ endif
 
 """ BEGIN: vim plugin declaration
 call plug#begin('~/.vim/bundle')
+
+"" Deoplete auto completion
+" Plug 'Shougo/deoplete.nvim'
+" Plug 'roxma/nvim-yarp'
+" Plug 'roxma/vim-hug-neovim-rpc'
+""" end of Deoplete
 Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -17,6 +23,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leshill/vim-json'
 Plug 'mattn/emmet-vim'
+Plug 'hashivim/vim-terraform'
 
 " Nice to have? these insert snippets for javascript
 " see https://www.youtube.com/watch?v=LoF-7GJOdVo
@@ -110,7 +117,8 @@ autocmd FileType python setlocal shiftwidth=4 softtabstop=4 ts=4 expandtab
 filetype plugin indent on
 set ts=2 sw=2 expandtab
 
-set omnifunc=syntaxcomplete#Complete
+" set omnifunc=syntaxcomplete#Complete
+set omnifunc=ale#completion#OmniFunc
 
 set clipboard=unnamed
 inoremap <C-Space> <C-x><C-o>
@@ -197,11 +205,15 @@ let g:jsx_ext_required=0
 " ALE by default runs all linters and fixers for all languages
 " instead, let's tell ALE to only run linters explicitly configured
 " let g:ale_linters_explicit = 1
-"
+
+" Use only the globally install version of tsserver for typescript/javascript
+let g:ale_typescript_tsserver_use_global = 1
+
 let g:ale_fixers = {
-    \ 'javascript': ['prettier'],
+    \ 'javascript': ['prettier', 'tsserver'],
     \ 'css': ['prettier'],
     \ 'json': ['prettier'],
+    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \}
 
 let g:ale_lint_on_save = 1
@@ -210,7 +222,7 @@ let g:ale_fix_on_save = 1
 
 " Enable ESLint only for JavaScript
 let g:ale_linters = {
-    \ 'javascript': ['eslint'],
+    \ 'javascript': ['eslint', 'tsserver'],
     \}
 
 " From https://github.com/w0rp/ale/issues/44#issuecomment-283252535
@@ -250,10 +262,13 @@ let g:mta_filetypes = {
 let g:indent_guides_enable_on_vim_startup =0
 """ END: VIM indent guides
 
-
 """ BEGIN: Ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 """ END: Ultisnips
+
+""" BEGIN: Deoplete autocompletion
+" let g:deoplete#enable_at_startup = 1
+""" END: deoplete autocompletion
