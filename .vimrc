@@ -58,6 +58,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'flazz/vim-colorschemes'
+Plug 'vim-latex/vim-latex'
+Plug 'hashivim/vim-terraform'
 call plug#end()
 """ END: vim plugins declaration
 
